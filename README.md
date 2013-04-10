@@ -1,8 +1,6 @@
 # JSON Patch Generator
 
-An implementation of the JSON Patch specification [RFC6902](http://www.rfc-editor.org/rfc/rfc6902.txt) in Ruby.
-
-It don't apply patch but generate them from 2 hash.
+A JSON patch generator in Ruby that is compliant to the JSON Patch specification [RFC6902](http://www.rfc-editor.org/rfc/rfc6902.txt).
 
 ## Status
 
