@@ -30,6 +30,18 @@ describe JsonPatch do
                          {child: {grandchild: {foo: :bar, chuck: :norris}}})
           .should == [{ op: :add, path: "/child/grandchild/chuck", value: :norris }]
       end
+
+      it "on nested object inside arrays" do
+        subject.generate({child: [{foo: :bar}]},
+                         {child: [{foo: :bar, chuck: :norris}]})
+          .should == [{ op: :add, path: '/child/0/chuck', value: :norris}]
+      end
+
+      it "on nested array inside arrays" do
+        subject.generate({child: [[:foo, :bar]]},
+                         {child: [[:foo, :bar, :chuck]]})
+          .should == [{ op: :add, path: '/child/0/2', value: :chuck}]
+      end
     end
 
     context "remove op" do
