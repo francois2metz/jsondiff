@@ -1,24 +1,26 @@
 module JsonPatch
   def self.generate(hash1, hash2)
-    hash_diff(hash1, hash2)
+    hash_diff("", hash1, hash2)
   end
 
-  def self.hash_diff(hash1, hash2)
+  def self.hash_diff(prefix, hash1, hash2)
     result = []
     hash2.each do |key, value|
       if !hash1.has_key? key
-        result << {op: :add, path: "/#{key}", value: value}
+        result << {op: :add, path: "#{prefix}/#{key}", value: value}
       elsif value != hash1.fetch(key)
-        if value.kind_of?(Array)
-          result = result + array_diff("/#{key}", hash1.fetch(key), value)
+        if value.kind_of?(Array) &&  hash1.fetch(key).kind_of?(Array)
+          result = result + array_diff("#{prefix}/#{key}", hash1.fetch(key), value)
+        elsif value.kind_of?(Hash) && hash1.fetch(key).kind_of?(Hash)
+          result = result + hash_diff("#{prefix}/#{key}", hash1.fetch(key), value)
         else
-          result << {op: :replace, path: "/#{key}", value: value}
+          result << {op: :replace, path: "#{prefix}/#{key}", value: value}
         end
       end
     end
     hash1.each do |key, value|
       unless hash2.has_key? key
-        result << {op: :remove, path: "/#{key}"}
+        result << {op: :remove, path: "#{prefix}/#{key}"}
       end
     end
     result

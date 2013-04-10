@@ -18,6 +18,10 @@ describe JsonPatch do
       it "on nested member object" do
         JsonPatch.generate({foo: :bar}, {foo: :bar, child: {grandchild: {}}}).should == [{ op: :add, path: "/child", value: {grandchild: {}} }]
       end
+
+      it "on more nested member object" do
+        JsonPatch.generate({child: {grandchild: {foo: :bar}}}, {child: {grandchild: {foo: :bar, chuck: :norris}}}).should == [{ op: :add, path: "/child/grandchild/chuck", value: :norris }]
+      end
     end
 
     context "remove op" do
@@ -37,6 +41,14 @@ describe JsonPatch do
 
       it "on array element" do
         JsonPatch.generate({foo: [:bar, :qux, :baz]}, {foo: [:bar, :foo, :baz]}).should == [{ op: :replace, path: "/foo/1", value: :foo }]
+      end
+
+      it "when type differ from array to hash" do
+        JsonPatch.generate({foo: [:bar]}, {foo: {bar: :foo}}).should == [{ op: :replace, path: "/foo", value: {bar: :foo} }]
+      end
+
+      it "when type differ from hash to array" do
+        JsonPatch.generate({foo: {bar: :foo}}, {foo: [:bar]}).should == [{ op: :replace, path: "/foo", value: [:bar] }]
       end
     end
   end
