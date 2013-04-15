@@ -12,7 +12,7 @@ As for now, it generate only patch with *add*, *remove* and *replace*  operation
 
 ## Install
 
-No gems yet
+    gem install jsondiff
 
 ## Usage
 
