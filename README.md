@@ -17,6 +17,8 @@ As for now, it generate only patch with *add*, *remove* and *replace*  operation
 ## Usage
 
 ```ruby
+require 'jsondiff'
+
 JsonDiff.generate({foo: :bar}, {foo: :plop})
 ```
 => will result in
