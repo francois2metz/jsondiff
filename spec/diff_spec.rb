@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe JsonPatch do
+describe JsonDiff do
   describe "#generate" do
     it "generate empty patch if nothing has changed" do
       subject.generate({}, {}).should == []

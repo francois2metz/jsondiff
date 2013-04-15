@@ -1,8 +1,8 @@
-require 'json_patch/helpers'
-require 'json_patch/hash_diff'
-require 'json_patch/array_diff'
+require 'json_diff/helpers'
+require 'json_diff/hash_diff'
+require 'json_diff/array_diff'
 
-module JsonPatch
+module JsonDiff
   # Generate a patch from two ruby hash
   #
   # hash1 - the first hash

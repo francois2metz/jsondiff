@@ -1,4 +1,4 @@
-module JsonPatch
+module JsonDiff
   module Helpers
     def self.included(base)
       base.extend(ClassMethods)

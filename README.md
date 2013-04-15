@@ -1,4 +1,4 @@
-# JSON Patch Generator
+# JSON Diff - JSON Patch Generator
 
 A JSON patch generator in Ruby that is compliant to the JSON Patch specification [RFC6902](http://www.rfc-editor.org/rfc/rfc6902.txt).
 
@@ -17,7 +17,7 @@ No gems yet
 ## Usage
 
 ```ruby
-JsonPatch.generate({foo: :bar}, {foo: :plop})
+JsonDiff.generate({foo: :bar}, {foo: :plop})
 ```
 => will result in
 

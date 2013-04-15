@@ -1,4 +1,4 @@
-require_relative '../lib/json_patch'
+require_relative '../lib/json_diff'
 
 RSpec.configure do |c|
   c.filter_run focus: true

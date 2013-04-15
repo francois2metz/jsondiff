@@ -1,4 +1,4 @@
-module JsonPatch
+module JsonDiff
   class ArrayDiff
     include Helpers
 
