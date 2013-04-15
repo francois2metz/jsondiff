@@ -13,8 +13,8 @@ module JsonDiff
         {op: :remove, path: "#{prefix}/#{key}"}
       end
 
-      def replace_op(prefix, key, value)
-        {op: :replace, path: "#{prefix}/#{key}", value: value}
+      def replace_op(prefix, value)
+        {op: :replace, path: prefix, value: value}
       end
     end
   end

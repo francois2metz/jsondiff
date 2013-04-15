@@ -9,13 +9,7 @@ module JsonDiff
         else
           value2 = hash1.fetch(key)
           if value != value2
-            if value.kind_of?(Array) && value2.kind_of?(Array)
-              ArrayDiff.generate(result, "#{prefix}/#{key}", value2, value)
-            elsif value.kind_of?(Hash) && value2.kind_of?(Hash)
-              HashDiff.generate(result, "#{prefix}/#{key}", value2, value)
-            else
-              result << replace_op(prefix, key, value)
-            end
+            JsonDiff.generate(value2, value, result, "#{prefix}/#{key}")
           end
         end
       end

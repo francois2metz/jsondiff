@@ -82,6 +82,12 @@ describe JsonDiff do
                          {foo: [:bar]})
           .should == [{ op: :replace, path: "/foo", value: [:bar] }]
       end
+
+      it "replace everything" do
+        subject.generate({foo: :bar},
+                         [:foo])
+          .should == [{ op: :replace, path: "", value: [:foo] }]
+      end
     end
   end
 end
