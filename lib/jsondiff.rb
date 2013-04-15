@@ -12,9 +12,9 @@ module JsonDiff
   #
   # Returns an array of operations
   def self.generate(arg1, arg2, result=[], prefix="")
-    if arg1.kind_of?(Hash) && arg2.kind_of?(Hash)
+    if Hash === arg1 && Hash === arg2
       HashDiff.generate(result, prefix, arg1, arg2)
-    elsif arg1.kind_of?(Array) && arg2.kind_of?(Array)
+    elsif Array === arg1 && Array === arg2
       ArrayDiff.generate(result, prefix, arg1, arg2)
     else
       result << replace_op(prefix, arg2)
