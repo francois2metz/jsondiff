@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/json_diff/version', __FILE__)
+require File.expand_path('../lib/jsondiff/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["François de Metz"]

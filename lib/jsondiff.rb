@@ -1,6 +1,6 @@
-require 'json_diff/helpers'
-require 'json_diff/hash_diff'
-require 'json_diff/array_diff'
+require 'jsondiff/helpers'
+require 'jsondiff/hash_diff'
+require 'jsondiff/array_diff'
 
 module JsonDiff
   # Generate a patch from two ruby hash
