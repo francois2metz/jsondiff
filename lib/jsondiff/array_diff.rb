@@ -4,23 +4,23 @@ module JsonDiff
 
     def self.generate(result, prefix, array1, array2)
       if array1.size < array2.size
-        array2.each_with_index do |value, index|
+        array2[(array1.size..array2.size)].each_with_index do |value, index|
+          index += array1.size
           if array1[index] != value
             result << add_op(prefix, index, value)
-            array1.insert(index, value)
           end
         end
       elsif array1.size > array2.size
-        array1.each_with_index do |value, index|
+        array1[(array2.size..array1.size)].reverse.each_with_index do |value, index|
+          index = array1.size - 1 - index
           if array2[index] != value
             result << remove_op(prefix, index)
-            array1.delete_at(index)
           end
         end
       end
       array2.each_with_index do |value, index|
-        if array1[index] != value
-          JsonDiff.generate(array1.at(index), value, result, "#{prefix}/#{index}")
+        if array1.size > index && array1[index] != value
+          JsonDiff.generate(array1[index], value, result, "#{prefix}/#{index}")
         end
       end
     end

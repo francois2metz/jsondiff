@@ -15,8 +15,15 @@ describe JsonDiff do
 
       it "on array element" do
         subject.generate({foo: [:bar, :baz]},
+                         {foo: [:bar, :baz, :qux]})
+          .should == [{ op: :add, path: "/foo/2", value: :qux }]
+      end
+
+      it "on multiple add in array elements" do
+        subject.generate({foo: [:bar]},
                          {foo: [:bar, :qux, :baz]})
-          .should == [{ op: :add, path: "/foo/1", value: :qux }]
+          .should == [{ op: :add, path: "/foo/1", value: :qux },
+                      { op: :add, path: "/foo/2", value: :baz }]
       end
 
       it "on nested member object" do
@@ -52,9 +59,16 @@ describe JsonDiff do
       end
 
       it "on array element" do
-        subject.generate({foo: [:bar, :qux, :baz]},
+        subject.generate({foo: [:bar, :baz, :qux]},
                          {foo: [:bar, :baz]})
-          .should == [{ op: :remove, path: "/foo/1" }]
+          .should == [{ op: :remove, path: "/foo/2" }]
+      end
+
+      it "on multiple remove in array elements" do
+        subject.generate({foo: [:bar, :qux, :baz]},
+                         {foo: [:bar]})
+          .should == [{ op: :remove, path: "/foo/2" },
+                      { op: :remove, path: "/foo/1" }]
       end
     end
 
