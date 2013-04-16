@@ -7,7 +7,7 @@ module JsonDiff
         if !hash1.has_key? key
           result << add_op(prefix, key, value)
         else
-          value2 = hash1.fetch(key)
+          value2 = hash1[key]
           if value != value2
             JsonDiff.generate(value2, value, result, "#{prefix}/#{key}")
           end
