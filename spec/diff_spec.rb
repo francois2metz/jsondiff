@@ -2,8 +2,14 @@ require_relative 'spec_helper'
 
 describe JsonDiff do
   describe "#generate" do
-    it "generate empty patch if nothing has changed" do
-      subject.generate({}, {}).should == []
+    context "empty patch" do
+      it "on hash" do
+        subject.generate({}, {}).should == []
+      end
+
+      it "on array" do
+        subject.generate([], []).should == []
+      end
     end
 
     context "add op" do
@@ -101,6 +107,35 @@ describe JsonDiff do
         subject.generate({foo: :bar},
                          [:foo])
           .should == [{ op: :replace, path: "", value: [:foo] }]
+      end
+    end
+  end
+
+  # Adapted from hana
+  # https://github.com/tenderlove/hana/blob/master/test/test_ietf.rb
+  # Copyright (c) 2012 Aaron Patterson
+  context "from ietf" do
+    TESTDIR = File.dirname File.expand_path __FILE__
+    json = File.read File.join TESTDIR, 'json-patch-tests', 'tests.json'
+    tests = JSON.parse json
+    tests.each_with_index do |test, i|
+      next unless test['doc']
+
+      it "#{test['comment'] || i }" do
+        pending "disabled" if test['disabled']
+
+        doc = test['doc']
+        expected = test['expected']
+
+        if test['error']
+          pending "cannot run error test case"
+        elsif !expected
+          pending "cannot run test case without expectation"
+        else
+          patch = JSON.parse(subject.generate(doc, expected).to_json)
+          hana = Hana::Patch.new patch
+          hana.apply(doc).should == expected
+        end
       end
     end
   end

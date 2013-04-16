@@ -1,4 +1,6 @@
 require_relative '../lib/jsondiff'
+require 'json'
+require_relative  './hana/lib/hana'
 
 RSpec.configure do |c|
   c.filter_run focus: true

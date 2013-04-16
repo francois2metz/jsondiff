@@ -1,0 +1,6 @@
+[submodule "spec/json-patch-tests"]
+	path = spec/json-patch-tests
+	url = https://github.com/json-patch/json-patch-tests.git
+[submodule "spec/hana"]
+	path = spec/hana
+	url = https://github.com/tenderlove/hana.git
