@@ -31,6 +31,14 @@ JsonDiff.generate({foo: :bar}, {foo: :plop})
 
     rspec
 
+## Changelog
+
+- 0.0.3:
+ - Allow to compare root Hash and Array.
+ - Performance improvements
+- 0.0.2: Fix require 'jsondiff'
+- 0.0.1: Initial release
+
 ## License
 
 Copyright (c) 2013 François de Metz
