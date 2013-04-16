@@ -4,12 +4,6 @@ A JSON patch generator in Ruby that is compliant to the JSON Patch specification
 
 To apply a patch, you should use [hana](https://github.com/tenderlove/hana).
 
-## Status
-
-This is proof of concept only. Only example of the specification works.
-
-As for now, it generate only patch with *add*, *remove* and *replace*  operations.
-
 ## Install
 
     gem install jsondiff
