@@ -5,16 +5,16 @@ module JsonDiff
     end
 
     module ClassMethods
-      def add_op(path, value)
-        {op: :add, path: path.join('/'), value: value}
+      def add_op(prefix, key, value)
+        {op: :add, path: "#{prefix}/#{key}", value: value}
       end
 
-      def remove_op(path)
-        {op: :remove, path: path.join('/')}
+      def remove_op(prefix, key)
+        {op: :remove, path: "#{prefix}/#{key}"}
       end
 
-      def replace_op(path, value)
-        {op: :replace, path: path.join('/'), value: value}
+      def replace_op(prefix, value)
+        {op: :replace, path: prefix, value: value}
       end
     end
   end

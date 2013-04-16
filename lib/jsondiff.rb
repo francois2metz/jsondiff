@@ -9,17 +9,15 @@ module JsonDiff
   #
   # arg1 - the first argument
   # arg2 - the second argument
-  # result - the result array
-  # path - the path for json pointer
   #
   # Returns an array of operations
-  def self.generate(arg1, arg2, result=[], path=[""])
+  def self.generate(arg1, arg2, result=[], prefix="")
     if Hash === arg1 && Hash === arg2
-      HashDiff.generate(result, path, arg1, arg2)
+      HashDiff.generate(result, prefix, arg1, arg2)
     elsif Array === arg1 && Array === arg2
-      ArrayDiff.generate(result, path, arg1, arg2)
+      ArrayDiff.generate(result, prefix, arg1, arg2)
     else
-      result << replace_op(path, arg2)
+      result << replace_op(prefix, arg2)
     end
     result
   end
