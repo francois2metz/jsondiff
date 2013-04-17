@@ -32,6 +32,12 @@ describe JsonDiff do
                       { op: :add, path: "/foo/2", value: :baz }]
       end
 
+      it "add null elements in array" do
+        subject.generate({foo: [:bar]},
+                         {foo: [:bar, nil]})
+          .should == [{ op: :add, path: "/foo/1", value: nil }]
+      end
+
       it "on nested member object" do
         subject.generate({foo: :bar},
                          {foo: :bar, child: {grandchild: {}}})
@@ -75,6 +81,12 @@ describe JsonDiff do
                          {foo: [:bar]})
           .should == [{ op: :remove, path: "/foo/2" },
                       { op: :remove, path: "/foo/1" }]
+      end
+
+      it "remove null elements in array" do
+        subject.generate({foo: [:bar, nil]},
+                         {foo: [:bar]})
+          .should == [{ op: :remove, path: "/foo/1" }]
       end
     end
 
