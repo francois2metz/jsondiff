@@ -27,6 +27,8 @@ JsonDiff.generate({foo: :bar}, {foo: :plop})
 
 ## Changelog
 
+- 0.0.5:
+ - Fix nil value in arrays
 - 0.0.4:
  - Don't modify input objects
  - Fix the order when removing entry in an array
