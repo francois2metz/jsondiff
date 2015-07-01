@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jsondiff (0.0.2)
+    jsondiff (0.0.5)
 
 GEM
   remote: https://rubygems.org/
