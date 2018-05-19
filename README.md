@@ -28,14 +28,14 @@ JsonDiff.generate({foo: :bar}, {foo: :plop})
 ## Changelog
 
 - 0.0.5:
- - Fix nil value in arrays
+  - Fix nil value in arrays
 - 0.0.4:
- - Don't modify input objects
- - Fix the order when removing entry in an array
- - Add round trip tests with Hana and IETF tests
+  - Don't modify input objects
+  - Fix the order when removing entry in an array
+  - Add round trip tests with Hana and IETF tests
 - 0.0.3:
- - Allow to compare root Hash and Array.
- - Performance improvements
+  - Allow to compare root Hash and Array.
+  - Performance improvements
 - 0.0.2: Fix require 'jsondiff'
 - 0.0.1: Initial release
 
