@@ -137,17 +137,18 @@ describe JsonDiff do
       next unless test['doc']
 
       it "#{test['comment'] || i }" do
-        pending "disabled" if test['disabled']
+        if test['disabled']
+          pending "disabled"
+          raise Error
+        end
 
         doc = test['doc']
         expected = test['expected']
 
         if test['error']
           pending "cannot run error test case"
-        elsif !expected
-          pending "cannot run test case without expectation"
+          raise Error
         end
-
         patch = JSON.parse(subject.generate(doc, expected).to_json)
         hana = Hana::Patch.new patch
         expect(hana.apply(doc)).to eql(expected)
