@@ -23,7 +23,14 @@ JsonDiff.generate({foo: :bar}, {foo: :plop})
 
 ## Tests
 
-    rspec
+Load the submodules:
+
+    git submodule update --init
+
+Then launch rspec:
+
+    bundle install
+    bundle exec rspec
 
 ## Changelog
 
