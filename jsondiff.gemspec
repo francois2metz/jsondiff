@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = JsonDiff::VERSION
 
-  gem.add_development_dependency "rspec", "~> 2.13.0"
+  gem.add_development_dependency "rspec", "~> 3.12.0"
 end
